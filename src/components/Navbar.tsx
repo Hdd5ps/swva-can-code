@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import logoCanCode from 'figma:asset/41a9c53551acc019b41d3b21987ba577c694855a.png';
+import logoCanCode from '../assets/logo1.png';
 
 export function Navbar() {
   const location = useLocation();

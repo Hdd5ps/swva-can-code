@@ -1,20 +1,32 @@
 import { Link } from 'react-router';
 import { Palette, Gamepad2, Zap, Users, Calendar, ArrowRight } from 'lucide-react';
+import logo2 from '../assets/logo2.png';
 
 export function SWVACanCreate() {
   return (
     <div>
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#E53935] to-[#00BCD4] text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
-            Year-Round Creative Tech Programs
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex w-full flex-col items-center gap-8 sm:flex-row sm:items-center">
+            <div className="flex w-full justify-start sm:w-auto">
+              <img
+                src={logo2}
+                alt="SWVA Can Create logo"
+                className="block h-10 w-auto sm:h-12"
+              />
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-4">
+                Year-Round Creative Tech Programs
+              </div>
+              <h1 className="text-white mb-4">SWVA Can Create</h1>
+              <p className="text-xl text-white/90 max-w-2xl mx-auto sm:mx-0">
+                Beyond camps—explore ongoing opportunities to express your creativity through 
+                technology. From game jams to art+tech workshops, there's always something new to create!
+              </p>
+            </div>
           </div>
-          <h1 className="text-white mb-6">SWVA Can Create</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Beyond camps—explore ongoing opportunities to express your creativity through 
-            technology. From game jams to art+tech workshops, there's always something new to create!
-          </p>
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router';
 import { FileText, Users, GraduationCap, DollarSign, Settings, GitBranch, BookOpen } from 'lucide-react';
-import logoCanCode from 'figma:asset/41a9c53551acc019b41d3b21987ba577c694855a.png';
+import logoCanCode from '../assets/logo1.png';
 
 export function Root() {
   const location = useLocation();

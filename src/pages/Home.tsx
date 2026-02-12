@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { Code, Users, Lightbulb, Award, ArrowRight, Calendar, MapPin } from 'lucide-react';
-import bannerImage from 'figma:asset/3e2c6b3e0116fe1ba3a91b55d57aab72a0a9cba0.png';
+import bannerImage from '../assets/logo1.png';
 
 export function Home() {
   return (
