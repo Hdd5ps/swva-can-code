@@ -6,23 +6,26 @@ export function SWVACanCreate() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#E53935] to-[#00BCD4] text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex w-full flex-col items-center gap-8 sm:flex-row sm:items-center">
-            <div className="flex w-full justify-start sm:w-auto">
+      <section
+        data-reveal
+        className="bg-gradient-to-r from-[#E53935] to-[#00BCD4] text-white py-20"
+      >
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-start gap-8 text-left sm:flex-row sm:items-center">
+            <div className="flex items-center justify-start">
               <img
                 src={logo2}
                 alt="SWVA Can Create logo"
-                className="block h-10 w-auto sm:h-12"
+                className="w-20 h-auto sm:w-28"
               />
             </div>
-            <div className="flex-1 text-center sm:text-left">
-              <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-4">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1.5 text-xs font-medium backdrop-blur-sm">
                 Year-Round Creative Tech Programs
               </div>
-              <h1 className="text-white mb-4">SWVA Can Create</h1>
-              <p className="text-xl text-white/90 max-w-2xl mx-auto sm:mx-0">
-                Beyond camps—explore ongoing opportunities to express your creativity through 
+              <h1 className="mt-3 text-3xl text-white sm:text-4xl">SWVA Can Create</h1>
+              <p className="mt-3 text-base text-white/90 sm:text-lg">
+                Beyond camps—explore ongoing opportunities to express your creativity through
                 technology. From game jams to art+tech workshops, there's always something new to create!
               </p>
             </div>
@@ -31,7 +34,7 @@ export function SWVACanCreate() {
       </section>
 
       {/* What is SWVA Can Create */}
-      <section className="py-20 bg-white">
+      <section data-reveal className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-[#1A237E] mb-6">What is SWVA Can Create?</h2>
           <p className="text-[#1A237E]/80 text-lg leading-relaxed">
@@ -44,7 +47,7 @@ export function SWVACanCreate() {
       </section>
 
       {/* Program Types */}
-      <section className="py-20">
+      <section data-reveal className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-[#1A237E] mb-4">Our Programs</h2>
@@ -148,7 +151,7 @@ export function SWVACanCreate() {
       </section>
 
       {/* How to Participate */}
-      <section className="py-20 bg-white">
+      <section data-reveal className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-[#1A237E] text-center mb-12">How to Get Involved</h2>
           
@@ -206,7 +209,7 @@ export function SWVACanCreate() {
       </section>
 
       {/* Upcoming Events Calendar (Placeholder) */}
-      <section className="py-20 bg-[#F5F3EE]">
+      <section data-reveal className="py-20 bg-[#F5F3EE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-[#1A237E] text-center mb-12">Upcoming Events</h2>
           
@@ -301,7 +304,10 @@ export function SWVACanCreate() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#E53935] to-[#00BCD4] text-white">
+      <section
+        data-reveal
+        className="py-20 bg-gradient-to-r from-[#E53935] to-[#00BCD4] text-white"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-white mb-6">Have an Idea for a Program?</h2>
           <p className="text-xl text-white/90 mb-8">

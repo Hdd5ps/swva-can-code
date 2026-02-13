@@ -5,6 +5,16 @@ import { Search, BookOpen, Download, Video, X } from 'lucide-react';
 export function Curriculum() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTerm, setSelectedTerm] = useState<number | null>(null);
+  const getYouTubeEmbedUrl = (videoId: string) => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.youtube.com';
+    const params = new URLSearchParams({
+      rel: '0',
+      modestbranding: '1',
+      playsinline: '1',
+      origin
+    });
+    return `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
+  };
 
   // Glossary terms data
   const glossaryTerms = [
@@ -331,12 +341,13 @@ export function Curriculum() {
               <iframe
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${filteredTerms[selectedTerm].videoId}`}
+                src={getYouTubeEmbedUrl(filteredTerms[selectedTerm].videoId)}
                 title={filteredTerms[selectedTerm].term}
                 frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="rounded-lg"
+                referrerPolicy="strict-origin-when-cross-origin"
               ></iframe>
             </div>
           </div>

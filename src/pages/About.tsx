@@ -8,8 +8,7 @@ export function About() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-white mb-6">About SWVA Can Code</h1>
           <p className="text-xl text-white/90">
-            Empowering the next generation of innovators, creators, and problem-solvers 
-            in Southwest Virginia through accessible, engaging technology education.
+            Are you up to the challenge?
           </p>
         </div>
       </section>

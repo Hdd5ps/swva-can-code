@@ -1,8 +1,35 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { Code, Users, Lightbulb, Award, ArrowRight, Calendar, MapPin } from 'lucide-react';
 import bannerImage from '../assets/logo1.png';
+import { supabase } from '../lib/supabaseClient';
 
 export function Home() {
+  // Home page gallery preview (shows up to 4 approved photos).
+  const [galleryPreview, setGalleryPreview] = useState<Array<{ image_url: string }>>([]);
+
+  useEffect(() => {
+    if (!supabase) return;
+
+    let active = true;
+
+    supabase
+      .from('gallery_images')
+      .select('image_url')
+      .eq('approved', true)
+      .order('created_at', { ascending: false })
+      .limit(4)
+      .then(({ data }) => {
+        if (active && data) {
+          setGalleryPreview(data);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <div>
       {/* ============================================
@@ -74,7 +101,7 @@ export function Home() {
                 <img 
                   src={bannerImage} 
                   alt="Students coding together" 
-                  className="rounded-2xl shadow-2xl"
+                  className="rounded-2xl"
                 />
               </div>
               {/* Decorative colored blurs behind the image - can be removed if desired */}
@@ -279,6 +306,48 @@ export function Home() {
                 <button className="w-full py-2 rounded-lg font-medium text-white transition-colors" style={{ backgroundColor: camp.color }}>
                   Learn More
                 </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          STUDENT SHOWCASE GALLERY PREVIEW
+          ============================================ */}
+      <section className="py-20 bg-[#F5F3EE]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12">
+            <div>
+              <h2 className="text-[#1A237E] mb-2">Student Showcase Gallery</h2>
+              {/* Edit this sentence to change the preview description. */}
+              <p className="text-[#1A237E]/70 text-lg">Snapshots from camps, demos, and student projects.</p>
+            </div>
+            <Link
+              to="/showcase"
+              className="mt-4 sm:mt-0 text-[#E53935] font-medium hover:underline inline-flex items-center gap-1"
+            >
+              View Full Gallery
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {/* This message shows if there are no approved photos yet. */}
+            {galleryPreview.length === 0 && (
+              <div className="col-span-full bg-white rounded-xl p-8 text-center text-[#1A237E]/70">
+                Gallery updates are coming soon.
+              </div>
+            )}
+            {galleryPreview.map((photo, index) => (
+              <div key={`${photo.image_url}-${index}`} className="bg-white rounded-xl overflow-hidden shadow-md">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={photo.image_url}
+                    alt="Student showcase preview"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             ))}
           </div>
