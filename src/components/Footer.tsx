@@ -44,7 +44,7 @@ export function Footer() {
               <li><Link to="/find-camp" className="hover:text-[#00BCD4] transition-colors">Find a Camp</Link></li>
               <li><Link to="/showcase" className="hover:text-[#00BCD4] transition-colors">Showcase</Link></li>
               <li><Link to="/curriculum" className="hover:text-[#00BCD4] transition-colors">Curriculum</Link></li>
-              <li><Link to="/sponsor" className="hover:text-[#00BCD4] transition-colors">Become a Sponsor</Link></li>
+              <li><Link to="/sponsor" className="hover:text-[#00BCD4] transition-colors">Sponsor</Link></li>
             </ul>
             {/* TO ADD MORE LINKS: Copy a line like <li><Link to="/about"...></Link></li>
                  and paste it below, then change the URL and text */}
@@ -60,21 +60,21 @@ export function Footer() {
               {/* EMAIL - Change email address below */}
               <li className="flex items-start gap-2">
                 <Mail className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00BCD4]" />
-                <a href="mailto:info@swvacancode.org" className="hover:text-[#00BCD4] transition-colors">
-                  info@swvacancode.org
+                <a href="mailto:haskea@uvawise.edu" className="hover:text-[#00BCD4] transition-colors">
+                  haskea@uvawise.edu
                 </a>
               </li>
               {/* PHONE - Change phone number below */}
               <li className="flex items-start gap-2">
                 <Phone className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00BCD4]" />
-                <a href="tel:+15551234567" className="hover:text-[#00BCD4] transition-colors">
-                  (555) 123-4567
+                <a href="tel:+12763765445" className="hover:text-[#00BCD4] transition-colors">
+                  (276) 376-5445
                 </a>
               </li>
               {/* LOCATION - Change location text below */}
               <li className="flex items-start gap-2">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#00BCD4]" />
-                <span>Southwest Virginia</span>
+                <span>Wise, Virginia</span>
               </li>
             </ul>
           </div>

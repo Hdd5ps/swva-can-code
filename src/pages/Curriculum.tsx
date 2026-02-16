@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { Search, BookOpen, Download, Video, X } from 'lucide-react';
+import { curriculumContent } from '../data/curriculumContent';
 
 export function Curriculum() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,50 +18,7 @@ export function Curriculum() {
   };
 
   // Glossary terms data
-  const glossaryTerms = [
-    {
-      term: 'Variable',
-      difficulty: 'Beginner',
-      definition: 'A variable is like a container that stores information in your code. You can put something in it (like a number or word) and use it later, or even change what\'s inside.',
-      videoId: 'dQw4w9WgXcQ', // Example YouTube video ID
-      color: '#00BCD4'
-    },
-    {
-      term: 'Loop',
-      difficulty: 'Beginner',
-      definition: 'A loop is a way to repeat the same action over and over without writing the same code multiple times. It\'s like telling your computer, "Do this 10 times," and it does!',
-      videoId: 'dQw4w9WgXcQ',
-      color: '#E53935'
-    },
-    {
-      term: 'Function',
-      difficulty: 'Beginner',
-      definition: 'A function is like a mini-program inside your program. You give it a name and tell it what to do, then you can use that name to make it run whenever you need it.',
-      videoId: 'dQw4w9WgXcQ',
-      color: '#00BCD4'
-    },
-    {
-      term: 'Conditional',
-      difficulty: 'Beginner',
-      definition: 'A conditional (or "if statement") lets your program make decisions. It checks if something is true, and then does different things based on the answer.',
-      videoId: 'dQw4w9WgXcQ',
-      color: '#E53935'
-    },
-    {
-      term: 'Array',
-      difficulty: 'Intermediate',
-      definition: 'An array is like a list that can hold multiple items in one place. Instead of creating separate variables for each thing, you can keep them all together in an array.',
-      videoId: 'dQw4w9WgXcQ',
-      color: '#00BCD4'
-    },
-    {
-      term: 'Algorithm',
-      difficulty: 'Intermediate',
-      definition: 'An algorithm is a step-by-step set of instructions for solving a problem or completing a task. It\'s like a recipe for your code!',
-      videoId: 'dQw4w9WgXcQ',
-      color: '#E53935'
-    },
-  ];
+  const glossaryTerms = curriculumContent.glossaryTerms;
 
   // Filter terms based on search
   const filteredTerms = glossaryTerms.filter(item =>
@@ -73,10 +31,9 @@ export function Curriculum() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#1A237E] to-[#00BCD4] text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-white mb-6">Curriculum & Resources</h1>
+          <h1 className="text-white mb-6">{curriculumContent.hero.title}</h1>
           <p className="text-xl text-white/90">
-            Free lesson plans, teaching materials, and a searchable glossary to support 
-            educators and students on their coding journey.
+            {curriculumContent.hero.subtitle}
           </p>
         </div>
       </section>
@@ -85,9 +42,7 @@ export function Curriculum() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[#1A237E]/80 text-lg leading-relaxed">
-            Whether you're a teacher looking to integrate coding into your classroom, 
-            a student exploring new concepts, or a parent supporting your child's learning, 
-            our resources are designed to make technology education accessible and engaging for everyone.
+            {curriculumContent.intro}
           </p>
         </div>
       </section>
@@ -96,63 +51,12 @@ export function Curriculum() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
-            <h2 className="text-[#1A237E] mb-4">Curriculum Modules</h2>
-            <p className="text-[#1A237E]/70 text-lg">
-              Downloadable lesson plans and activities organized by grade level and topic.
-            </p>
+            <h2 className="text-[#1A237E] mb-4">{curriculumContent.modulesSection.title}</h2>
+            <p className="text-[#1A237E]/70 text-lg">{curriculumContent.modulesSection.description}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Introduction to Variables',
-                grade: 'Grades 3-5',
-                duration: '45 min',
-                level: 'Beginner',
-                includes: ['Lesson plan', 'Student handout', 'Activity guide'],
-                color: '#00BCD4'
-              },
-              {
-                title: 'Loops & Patterns',
-                grade: 'Grades 4-6',
-                duration: '60 min',
-                level: 'Beginner',
-                includes: ['Lesson plan', 'Coding challenges', 'Answer key'],
-                color: '#E53935'
-              },
-              {
-                title: 'Building Your First Game',
-                grade: 'Grades 6-8',
-                duration: '90 min',
-                level: 'Intermediate',
-                includes: ['Project guide', 'Code templates', 'Extension activities'],
-                color: '#00BCD4'
-              },
-              {
-                title: 'Web Design Basics',
-                grade: 'Grades 7-9',
-                duration: '60 min',
-                level: 'Beginner',
-                includes: ['HTML/CSS tutorial', 'Practice exercises', 'Project examples'],
-                color: '#E53935'
-              },
-              {
-                title: 'Data & Algorithms',
-                grade: 'Grades 9-12',
-                duration: '75 min',
-                level: 'Advanced',
-                includes: ['Lecture slides', 'Coding problems', 'Assessment'],
-                color: '#00BCD4'
-              },
-              {
-                title: 'Creative Coding with Art',
-                grade: 'Grades 5-8',
-                duration: '90 min',
-                level: 'Intermediate',
-                includes: ['Art project guide', 'Code library', 'Gallery examples'],
-                color: '#E53935'
-              },
-            ].map((module, index) => (
+            {curriculumContent.modules.map((module, index) => (
               <div 
                 key={index} 
                 className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4"
@@ -195,35 +99,10 @@ export function Curriculum() {
       {/* Additional Resources */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-[#1A237E] mb-8">Additional Resources</h2>
+          <h2 className="text-[#1A237E] mb-8">{curriculumContent.resourcesSection.title}</h2>
           
           <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                name: 'Scratch',
-                description: 'Visual programming language perfect for beginners',
-                link: 'https://scratch.mit.edu',
-                icon: '🎨'
-              },
-              {
-                name: 'Code.org',
-                description: 'Free coding courses and activities for all ages',
-                link: 'https://code.org',
-                icon: '💻'
-              },
-              {
-                name: 'Hour of Code',
-                description: 'One-hour tutorials in dozens of languages',
-                link: 'https://hourofcode.com',
-                icon: '⏰'
-              },
-              {
-                name: 'Khan Academy',
-                description: 'Computer programming courses from intro to advanced',
-                link: 'https://khanacademy.org',
-                icon: '📚'
-              },
-            ].map((resource, index) => (
+            {curriculumContent.resourcesSection.items.map((resource, index) => (
               <div key={index} className="bg-[#F5F3EE] rounded-lg p-6 hover:shadow-md transition-shadow">
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">{resource.icon}</div>
@@ -250,17 +129,15 @@ export function Curriculum() {
       <section className="py-20 bg-[#00BCD4]/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
-            <h2 className="text-[#1A237E] mb-4">Coding Glossary</h2>
-            <p className="text-[#1A237E]/70 text-lg mb-8">
-              Search for coding terms and watch video explanations. Perfect for students learning at their own pace!
-            </p>
+            <h2 className="text-[#1A237E] mb-4">{curriculumContent.glossarySection.title}</h2>
+            <p className="text-[#1A237E]/70 text-lg mb-8">{curriculumContent.glossarySection.description}</p>
 
             {/* Search Bar */}
             <div className="relative max-w-2xl">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1A237E]/40" />
               <input
                 type="text"
-                placeholder="Search for a term (e.g., variable, loop, function)..."
+                placeholder={curriculumContent.glossarySection.searchPlaceholder}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 rounded-lg border-2 border-[#1A237E]/10 focus:border-[#00BCD4] focus:outline-none text-[#1A237E]"
@@ -304,7 +181,7 @@ export function Curriculum() {
           {filteredTerms.length === 0 && (
             <div className="text-center py-12 text-[#1A237E]/70">
               <BookOpen className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>No terms found matching "{searchTerm}"</p>
+              <p>{curriculumContent.glossarySection.emptyMessagePrefix}"{searchTerm}"</p>
             </div>
           )}
         </div>
@@ -357,16 +234,13 @@ export function Curriculum() {
       {/* CTA for Educators */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-[#1A237E] mb-6">For Educators</h2>
-          <p className="text-[#1A237E]/80 text-lg mb-8">
-            Need help integrating these resources into your classroom? 
-            Want to request a specific lesson plan or glossary term? We're here to help!
-          </p>
+          <h2 className="text-[#1A237E] mb-6">{curriculumContent.cta.title}</h2>
+          <p className="text-[#1A237E]/80 text-lg mb-8">{curriculumContent.cta.description}</p>
           <Link
-            to="/contact"
+            to={curriculumContent.cta.buttonTo}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00BCD4] text-white rounded-lg font-medium hover:bg-[#00ACC1] transition-colors shadow-lg"
           >
-            Contact Our Team
+            {curriculumContent.cta.buttonLabel}
           </Link>
         </div>
       </section>

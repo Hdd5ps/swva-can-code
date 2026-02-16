@@ -1,34 +1,17 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { Code, Users, Lightbulb, Award, ArrowRight, Calendar, MapPin } from 'lucide-react';
 import bannerImage from '../assets/logo1.png';
-import { supabase } from '../lib/supabaseClient';
+import { homeContent } from '../data/homeContent';
 
 export function Home() {
-  // Home page gallery preview (shows up to 4 approved photos).
-  const [galleryPreview, setGalleryPreview] = useState<Array<{ image_url: string }>>([]);
+  const offerIconMap = {
+    code: Code,
+    award: Award,
+    lightbulb: Lightbulb,
+    users: Users
+  } as const;
 
-  useEffect(() => {
-    if (!supabase) return;
-
-    let active = true;
-
-    supabase
-      .from('gallery_images')
-      .select('image_url')
-      .eq('approved', true)
-      .order('created_at', { ascending: false })
-      .limit(4)
-      .then(({ data }) => {
-        if (active && data) {
-          setGalleryPreview(data);
-        }
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
+  const galleryPreview = homeContent.showcasePreview.images;
 
   return (
     <div>
@@ -54,23 +37,21 @@ export function Home() {
             <div className="text-center lg:text-left">
               {/* Small badge above headline - change text here */}
               <div className="inline-block px-4 py-2 bg-[#00BCD4] rounded-full text-sm font-medium mb-6">
-                Empowering Young Coders in Southwest Virginia
+                {homeContent.hero.badge}
               </div>
               
               {/* MAIN HEADLINE - Edit the text between the tags to change the headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Where Kids Learn to{' '}
-                {/* text-[#00BCD4] makes text cyan blue */}
-                <span className="text-[#00BCD4]">Code</span>,{' '}
-                {/* text-[#E53935] makes text red */}
-                <span className="text-[#E53935]">Create</span>, and{' '}
-                <span className="text-[#00BCD4]">Innovate</span>
+                {homeContent.hero.titleParts.map((part, index) => (
+                  <span key={`${part.text}-${index}`} className={part.className}>
+                    {part.text}
+                  </span>
+                ))}
               </h1>
               
               {/* SUBHEADLINE - Edit this paragraph to change the description */}
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto lg:mx-0">
-                Join our K-12 coding camps and creative tech programs. 
-                Build projects, make friends, and discover the exciting world of technology.
+                {homeContent.hero.subtitle}
               </p>
 
               {/* BUTTONS - These are the two main call-to-action buttons */}
@@ -78,18 +59,18 @@ export function Home() {
                 {/* First button (cyan) - Links to Find a Camp page */}
                 {/* To change where it goes, edit the text in to="/find-camp" */}
                 <Link
-                  to="/find-camp"
+                  to={homeContent.hero.primaryCta.to}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00BCD4] text-white rounded-lg font-medium hover:bg-[#00ACC1] transition-colors shadow-lg"
                 >
-                  Find a Camp
+                  {homeContent.hero.primaryCta.label}
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 {/* Second button (white) - Links to About page */}
                 <Link
-                  to="/about"
+                  to={homeContent.hero.secondaryCta.to}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1A237E] rounded-lg font-medium hover:bg-gray-100 transition-colors"
                 >
-                  Learn More
+                  {homeContent.hero.secondaryCta.label}
                 </Link>
               </div>
             </div>
@@ -130,25 +111,12 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {/* STAT 1 - Edit the number and label text */}
-            <div className="text-center">
-              <div className="text-4xl lg:text-5xl font-bold text-[#00BCD4] mb-2">500+</div>
-              <div className="text-[#1A237E]/70">Students Served</div>
-            </div>
-            {/* STAT 2 */}
-            <div className="text-center">
-              <div className="text-4xl lg:text-5xl font-bold text-[#E53935] mb-2">25+</div>
-              <div className="text-[#1A237E]/70">Camps Annually</div>
-            </div>
-            {/* STAT 3 */}
-            <div className="text-center">
-              <div className="text-4xl lg:text-5xl font-bold text-[#00BCD4] mb-2">15+</div>
-              <div className="text-[#1A237E]/70">Partner Schools</div>
-            </div>
-            {/* STAT 4 */}
-            <div className="text-center">
-              <div className="text-4xl lg:text-5xl font-bold text-[#E53935] mb-2">100%</div>
-              <div className="text-[#1A237E]/70">Fun Guaranteed</div>
-            </div>
+            {homeContent.stats.map((stat, index) => (
+              <div key={`${stat.label}-${index}`} className="text-center">
+                <div className={`text-4xl lg:text-5xl font-bold mb-2 ${stat.colorClass}`}>{stat.value}</div>
+                <div className="text-[#1A237E]/70">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -161,78 +129,69 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section header - edit these texts */}
           <div className="text-center mb-16">
-            <h2 className="text-[#1A237E] mb-4">What We Offer</h2>
-            <p className="text-[#1A237E]/70 text-xl max-w-3xl mx-auto">
-              From beginner-friendly camps to advanced creative tech programs, 
-              we have something for every young learner.
-            </p>
+            <h2 className="text-[#1A237E] mb-4">{homeContent.offersSection.title}</h2>
+            <p className="text-[#1A237E]/70 text-xl max-w-3xl mx-auto">{homeContent.offersSection.description}</p>
           </div>
 
           {/* The 4 program cards - each card follows the same structure */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* CARD 1: Coding Camps */}
-            {/* To change color, edit border-[#00BCD4] to another color */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4 border-[#00BCD4]">
-              {/* Icon circle - change bg-[#00BCD4]/10 and text-[#00BCD4] to match */}
-              <div className="w-14 h-14 bg-[#00BCD4]/10 rounded-full flex items-center justify-center mb-4">
-                <Code className="w-7 h-7 text-[#00BCD4]" />
-              </div>
-              {/* Card title - edit this text */}
-              <h3 className="text-[#1A237E] mb-3">Coding Camps</h3>
-              {/* Card description - edit this text */}
-              <p className="text-[#1A237E]/70 mb-4">
-                Week-long camps teaching programming fundamentals through fun, hands-on projects.
-              </p>
-              {/* Card link - change to="/find-camp" to link to a different page */}
-              <Link to="/find-camp" className="text-[#00BCD4] font-medium hover:underline inline-flex items-center gap-1">
-                Find Camps
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+            {homeContent.offers.map((offer, index) => {
+              const Icon = offerIconMap[offer.icon];
+              return (
+                <div
+                  key={`${offer.title}-${index}`}
+                  className={`bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4 ${offer.borderClass}`}
+                >
+                  <div className={`w-14 h-14 ${offer.iconBgClass} rounded-full flex items-center justify-center mb-4`}>
+                    <Icon className={`w-7 h-7 ${offer.colorClass}`} />
+                  </div>
+                  <h3 className="text-[#1A237E] mb-3">{offer.title}</h3>
+                  <p className="text-[#1A237E]/70 mb-4">{offer.description}</p>
+                  <Link to={offer.linkTo} className={`${offer.colorClass} font-medium hover:underline inline-flex items-center gap-1`}>
+                    {offer.linkLabel}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-            {/* CARD 2: Showcase */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4 border-[#E53935]">
-              <div className="w-14 h-14 bg-[#E53935]/10 rounded-full flex items-center justify-center mb-4">
-                <Award className="w-7 h-7 text-[#E53935]" />
-              </div>
-              <h3 className="text-[#1A237E] mb-3">Student Showcase</h3>
-              <p className="text-[#1A237E]/70 mb-4">
-                See amazing projects created by students just like you. Get inspired!
-              </p>
-              <Link to="/showcase" className="text-[#E53935] font-medium hover:underline inline-flex items-center gap-1">
-                View Projects
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+      {/* ============================================
+          APPLE CURRICULUM SECTION
+          ============================================ */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[auto,1fr] gap-10 items-start">
+            <div className="bg-[#F5F3EE] rounded-2xl p-8 text-center">
+              <div className="text-xs tracking-[0.4em] text-[#1A237E]/60">{homeContent.appleCurriculum.logoLabel}</div>
             </div>
-
-            {/* CARD 3: SWVA Can Create */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4 border-[#00BCD4]">
-              <div className="w-14 h-14 bg-[#00BCD4]/10 rounded-full flex items-center justify-center mb-4">
-                <Lightbulb className="w-7 h-7 text-[#00BCD4]" />
+            <div>
+              <h2 className="text-[#1A237E] mb-4">{homeContent.appleCurriculum.title}</h2>
+              <p className="text-[#1A237E]/80 text-lg mb-6">{homeContent.appleCurriculum.intro}</p>
+              <p className="text-[#1A237E]/70 mb-6">{homeContent.appleCurriculum.details}</p>
+              <ul className="space-y-3 text-[#1A237E]/80 mb-6">
+                {homeContent.appleCurriculum.bullets.map((item, index) => (
+                  <li key={`${item}-${index}`} className="flex items-start gap-2">
+                    <span className="text-[#00BCD4] font-bold">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col sm:flex-row gap-4">
+                {homeContent.appleCurriculum.links.map((link, index) => (
+                  <a
+                    key={`${link.label}-${index}`}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-[#1A237E] text-[#1A237E] font-medium hover:bg-[#1A237E]/10 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </div>
-              <h3 className="text-[#1A237E] mb-3">SWVA Can Create</h3>
-              <p className="text-[#1A237E]/70 mb-4">
-                Year-round creative tech opportunities including hackathons and art+tech workshops.
-              </p>
-              <Link to="/swva-can-create" className="text-[#00BCD4] font-medium hover:underline inline-flex items-center gap-1">
-                Explore Programs
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-
-            {/* CARD 4: Curriculum */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow border-t-4 border-[#E53935]">
-              <div className="w-14 h-14 bg-[#E53935]/10 rounded-full flex items-center justify-center mb-4">
-                <Users className="w-7 h-7 text-[#E53935]" />
-              </div>
-              <h3 className="text-[#1A237E] mb-3">For Educators</h3>
-              <p className="text-[#1A237E]/70 mb-4">
-                Access curriculum, resources, and a searchable glossary with video explanations.
-              </p>
-              <Link to="/curriculum" className="text-[#E53935] font-medium hover:underline inline-flex items-center gap-1">
-                View Resources
-                <ArrowRight className="w-4 h-4" />
-              </Link>
             </div>
           </div>
         </div>
@@ -247,14 +206,14 @@ export function Home() {
           {/* Section header with link to all camps */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12">
             <div>
-              <h2 className="text-[#1A237E] mb-2">Upcoming Camps</h2>
-              <p className="text-[#1A237E]/70 text-lg">Join us this season!</p>
+              <h2 className="text-[#1A237E] mb-2">{homeContent.upcomingCampsSection.title}</h2>
+              <p className="text-[#1A237E]/70 text-lg">{homeContent.upcomingCampsSection.description}</p>
             </div>
             <Link
-              to="/find-camp"
+              to={homeContent.upcomingCampsSection.linkTo}
               className="mt-4 sm:mt-0 text-[#00BCD4] font-medium hover:underline inline-flex items-center gap-1"
             >
-              View All Camps
+              {homeContent.upcomingCampsSection.linkLabel}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -262,31 +221,7 @@ export function Home() {
           {/* Camp cards grid */}
           {/* HOW TO EDIT: Change the text in the array below to update camp details */}
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Summer Code Camp - Beginners',  // Camp name
-                date: 'June 12-16, 2026',              // Camp dates
-                location: 'Abingdon, VA',              // Camp location
-                ages: 'Ages 8-12',                      // Age range
-                color: '#00BCD4'                        // Card accent color (cyan or red)
-              },
-              {
-                title: 'Game Design Workshop',
-                date: 'June 19-23, 2026',
-                location: 'Bristol, VA',
-                ages: 'Ages 10-14',
-                color: '#E53935'
-              },
-              {
-                title: 'Web Development Basics',
-                date: 'July 10-14, 2026',
-                location: 'Blacksburg, VA',
-                ages: 'Ages 12-16',
-                color: '#00BCD4'
-              }
-              /* TO ADD MORE CAMPS: Copy one of the camp objects above (including the curly braces)
-                 and paste it here with a comma, then edit the details */
-            ].map((camp, index) => (
+            {homeContent.upcomingCamps.map((camp, index) => (
               // Don't edit this part - it displays each camp from the array above
               <div key={index} className="bg-[#F5F3EE] rounded-xl p-6 border-l-4 hover:shadow-lg transition-shadow" style={{ borderColor: camp.color }}>
                 <h3 className="text-[#1A237E] mb-4">{camp.title}</h3>
@@ -319,15 +254,15 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12">
             <div>
-              <h2 className="text-[#1A237E] mb-2">Student Showcase Gallery</h2>
+              <h2 className="text-[#1A237E] mb-2">{homeContent.showcasePreview.title}</h2>
               {/* Edit this sentence to change the preview description. */}
-              <p className="text-[#1A237E]/70 text-lg">Snapshots from camps, demos, and student projects.</p>
+              <p className="text-[#1A237E]/70 text-lg">{homeContent.showcasePreview.description}</p>
             </div>
             <Link
-              to="/showcase"
+              to={homeContent.showcasePreview.linkTo}
               className="mt-4 sm:mt-0 text-[#E53935] font-medium hover:underline inline-flex items-center gap-1"
             >
-              View Full Gallery
+              {homeContent.showcasePreview.linkLabel}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -336,15 +271,15 @@ export function Home() {
             {/* This message shows if there are no approved photos yet. */}
             {galleryPreview.length === 0 && (
               <div className="col-span-full bg-white rounded-xl p-8 text-center text-[#1A237E]/70">
-                Gallery updates are coming soon.
+                {homeContent.showcasePreview.emptyMessage}
               </div>
             )}
             {galleryPreview.map((photo, index) => (
-              <div key={`${photo.image_url}-${index}`} className="bg-white rounded-xl overflow-hidden shadow-md">
+              <div key={`${photo.src}-${index}`} className="bg-white rounded-xl overflow-hidden shadow-md">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={photo.image_url}
-                    alt="Student showcase preview"
+                    src={photo.src}
+                    alt={photo.alt}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -361,29 +296,44 @@ export function Home() {
       <section className="py-20 bg-gradient-to-r from-[#1A237E] to-[#00BCD4] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Headline - edit this text */}
-          <h2 className="text-white mb-6">Ready to Start Your Coding Journey?</h2>
+          <h2 className="text-white mb-6">{homeContent.cta.title}</h2>
           {/* Description - edit this text */}
-          <p className="text-xl text-white/90 mb-8">
-            Join hundreds of students who are already building, creating, and innovating with code.
-          </p>
+          <p className="text-xl text-white/90 mb-8">{homeContent.cta.description}</p>
           {/* Two action buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* Primary button - links to camp registration */}
             <Link
-              to="/find-camp"
+              to={homeContent.cta.primaryTo}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1A237E] rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Register for a Camp
+              {homeContent.cta.primaryLabel}
               <ArrowRight className="w-5 h-5" />
             </Link>
-            {/* Secondary button - links to contact page */}
             <Link
-              to="/contact"
+              to={homeContent.cta.secondaryTo}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-medium hover:bg-white/10 transition-colors"
             >
-              Contact Us
+              {homeContent.cta.secondaryLabel}
             </Link>
           </div>
+          {homeContent.cta.followUp && (
+            <p className="text-white/90 mt-6">{homeContent.cta.followUp}</p>
+          )}
+        </div>
+      </section>
+
+      {/* ============================================
+          FAQ TEASER SECTION
+          ============================================ */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-[#1A237E] mb-3">{homeContent.faqTeaser.title}</h2>
+          <p className="text-[#1A237E]/70 text-lg mb-6">{homeContent.faqTeaser.subtitle}</p>
+          <Link
+            to={homeContent.faqTeaser.ctaTo}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#00BCD4] text-white font-medium hover:bg-[#00ACC1] transition-colors"
+          >
+            {homeContent.faqTeaser.ctaLabel}
+          </Link>
         </div>
       </section>
     </div>

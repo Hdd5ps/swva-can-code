@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { contactContent } from '../data/contactContent';
 
 export function Contact() {
   // Form state management - don't edit this section
@@ -45,12 +46,9 @@ export function Contact() {
       <section className="bg-gradient-to-r from-[#1A237E] to-[#00BCD4] text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Page title - edit this text */}
-          <h1 className="text-white mb-6">Get in Touch</h1>
+          <h1 className="text-white mb-6">{contactContent.hero.title}</h1>
           {/* Page description - edit this text */}
-          <p className="text-xl text-white/90">
-            Have questions about our programs? Want to get involved? 
-            We'd love to hear from you!
-          </p>
+          <p className="text-xl text-white/90">{contactContent.hero.subtitle}</p>
         </div>
       </section>
 
@@ -62,13 +60,9 @@ export function Contact() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* LEFT COLUMN: Contact Information */}
             <div>
-              <h2 className="text-[#1A237E] mb-6">Contact Information</h2>
+              <h2 className="text-[#1A237E] mb-6">{contactContent.intro.title}</h2>
               {/* Intro paragraph - edit this text */}
-              <p className="text-[#1A237E]/70 mb-8 leading-relaxed">
-                Whether you're a parent looking for camp information, an educator interested 
-                in our resources, or a potential sponsor, we're here to help. Reach out using 
-                the form or contact us directly.
-              </p>
+              <p className="text-[#1A237E]/70 mb-8 leading-relaxed">{contactContent.intro.text}</p>
 
               {/* CONTACT DETAILS - Edit email, phone, and location below */}
               <div className="space-y-6">
@@ -78,17 +72,17 @@ export function Contact() {
                     <Mail className="w-6 h-6 text-[#00BCD4]" />
                   </div>
                   <div>
-                    <h3 className="text-[#1A237E] mb-1">Email</h3>
+                    <h3 className="text-[#1A237E] mb-1">{contactContent.contactDetails.email.label}</h3>
                     {/* Change email address here */}
                     <a 
-                      href="mailto:info@swvacancode.org" 
+                      href={`mailto:${contactContent.contactDetails.email.address}`}
                       className="text-[#00BCD4] hover:underline"
                     >
-                      info@swvacancode.org
+                      {contactContent.contactDetails.email.address}
                     </a>
                     {/* Edit response time text */}
                     <p className="text-sm text-[#1A237E]/60 mt-1">
-                      We typically respond within 24-48 hours
+                      {contactContent.contactDetails.email.responseTime}
                     </p>
                   </div>
                 </div>
@@ -99,17 +93,17 @@ export function Contact() {
                     <Phone className="w-6 h-6 text-[#E53935]" />
                   </div>
                   <div>
-                    <h3 className="text-[#1A237E] mb-1">Phone</h3>
+                    <h3 className="text-[#1A237E] mb-1">{contactContent.contactDetails.phone.label}</h3>
                     {/* Change phone number here */}
                     <a 
-                      href="tel:+15551234567" 
+                      href={`tel:${contactContent.contactDetails.phone.tel}`}
                       className="text-[#00BCD4] hover:underline"
                     >
-                      (555) 123-4567
+                      {contactContent.contactDetails.phone.number}
                     </a>
                     {/* Edit office hours */}
                     <p className="text-sm text-[#1A237E]/60 mt-1">
-                      Monday - Friday, 9:00 AM - 5:00 PM EST
+                      {contactContent.contactDetails.phone.hours}
                     </p>
                   </div>
                 </div>
@@ -120,13 +114,13 @@ export function Contact() {
                     <MapPin className="w-6 h-6 text-[#00BCD4]" />
                   </div>
                   <div>
-                    <h3 className="text-[#1A237E] mb-1">Location</h3>
+                    <h3 className="text-[#1A237E] mb-1">{contactContent.contactDetails.location.label}</h3>
                     {/* Change location text here */}
                     <p className="text-[#1A237E]/70">
-                      Serving Southwest Virginia
+                      {contactContent.contactDetails.location.line1}
                     </p>
                     <p className="text-sm text-[#1A237E]/60 mt-1">
-                      Abingdon, Bristol, Blacksburg, and surrounding areas
+                      {contactContent.contactDetails.location.line2}
                     </p>
                   </div>
                 </div>
@@ -134,25 +128,15 @@ export function Contact() {
 
               {/* QUICK LINKS BOX */}
               <div className="mt-12 bg-[#F5F3EE] rounded-xl p-6">
-                <h3 className="text-[#1A237E] mb-4">Looking for something specific?</h3>
+                <h3 className="text-[#1A237E] mb-4">{contactContent.quickLinks.title}</h3>
                 {/* Edit these quick links as needed */}
                 <ul className="space-y-3 text-[#1A237E]/70">
-                  <li>
-                    <strong className="text-[#1A237E]">Camp Registration:</strong> Visit our{' '}
-                    <a href="/find-camp" className="text-[#00BCD4] hover:underline">Find a Camp</a> page
-                  </li>
-                  <li>
-                    <strong className="text-[#1A237E]">Teaching Resources:</strong> Browse our{' '}
-                    <a href="/curriculum" className="text-[#00BCD4] hover:underline">Curriculum & Resources</a>
-                  </li>
-                  <li>
-                    <strong className="text-[#1A237E]">Sponsorship:</strong> Learn about{' '}
-                    <a href="/sponsor" className="text-[#00BCD4] hover:underline">becoming a sponsor</a>
-                  </li>
-                  <li>
-                    <strong className="text-[#1A237E]">About Us:</strong> Read more{' '}
-                    <a href="/about" className="text-[#00BCD4] hover:underline">about our mission</a>
-                  </li>
+                  {contactContent.quickLinks.items.map((link, index) => (
+                    <li key={`${link.label}-${index}`}>
+                      <strong className="text-[#1A237E]">{link.label}</strong>{' '}
+                      <a href={link.href} className="text-[#00BCD4] hover:underline">{link.text}</a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -161,12 +145,12 @@ export function Contact() {
             {/* Don't edit the form structure, but you can edit labels and placeholder text */}
             <div>
               <div className="bg-white rounded-xl p-8 shadow-lg border-t-4 border-[#00BCD4]">
-                <h2 className="text-[#1A237E] mb-6">Send Us a Message</h2>
+                <h2 className="text-[#1A237E] mb-6">{contactContent.form.title}</h2>
 
                 {/* Success message - shown after form submission */}
                 {submitted && (
                   <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-                    ✓ Thank you! Your message has been sent. We'll get back to you soon.
+                    {contactContent.form.successMessage}
                   </div>
                 )}
 
@@ -174,7 +158,7 @@ export function Contact() {
                   {/* NAME FIELD */}
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-[#1A237E] mb-2">
-                      Name *
+                      {contactContent.form.nameLabel}
                     </label>
                     <input
                       type="text"
@@ -184,14 +168,14 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-[#1A237E]/20 rounded-lg focus:border-[#00BCD4] focus:outline-none text-[#1A237E]"
-                      placeholder="Your full name"
+                      placeholder={contactContent.form.namePlaceholder}
                     />
                   </div>
 
                   {/* EMAIL FIELD */}
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-[#1A237E] mb-2">
-                      Email *
+                      {contactContent.form.emailLabel}
                     </label>
                     <input
                       type="email"
@@ -201,14 +185,14 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-[#1A237E]/20 rounded-lg focus:border-[#00BCD4] focus:outline-none text-[#1A237E]"
-                      placeholder="your.email@example.com"
+                      placeholder={contactContent.form.emailPlaceholder}
                     />
                   </div>
 
                   {/* PHONE FIELD (Optional) */}
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-[#1A237E] mb-2">
-                      Phone (Optional)
+                      {contactContent.form.phoneLabel}
                     </label>
                     <input
                       type="tel"
@@ -217,7 +201,7 @@ export function Contact() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-[#1A237E]/20 rounded-lg focus:border-[#00BCD4] focus:outline-none text-[#1A237E]"
-                      placeholder="(555) 123-4567"
+                      placeholder={contactContent.form.phonePlaceholder}
                     />
                   </div>
 
@@ -225,7 +209,7 @@ export function Contact() {
                   {/* To add/remove options, edit the <option> tags below */}
                   <div>
                     <label htmlFor="inquiryType" className="block text-sm font-medium text-[#1A237E] mb-2">
-                      What is your inquiry about? *
+                      {contactContent.form.inquiryLabel}
                     </label>
                     <select
                       id="inquiryType"
@@ -236,19 +220,18 @@ export function Contact() {
                       className="w-full px-4 py-3 border border-[#1A237E]/20 rounded-lg focus:border-[#00BCD4] focus:outline-none text-[#1A237E]"
                     >
                       {/* Edit these options or add new ones */}
-                      <option value="general">General Inquiry</option>
-                      <option value="camp">Camp Registration / Information</option>
-                      <option value="educator">Educator Resources / School Partnership</option>
-                      <option value="volunteer">Volunteer / Teaching Opportunity</option>
-                      <option value="sponsor">Sponsorship</option>
-                      <option value="other">Other</option>
+                      {contactContent.form.inquiryOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
                   {/* MESSAGE FIELD */}
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-[#1A237E] mb-2">
-                      Message *
+                      {contactContent.form.messageLabel}
                     </label>
                     <textarea
                       id="message"
@@ -258,7 +241,7 @@ export function Contact() {
                       required
                       rows={6}
                       className="w-full px-4 py-3 border border-[#1A237E]/20 rounded-lg focus:border-[#00BCD4] focus:outline-none text-[#1A237E] resize-none"
-                      placeholder="Tell us how we can help..."
+                      placeholder={contactContent.form.messagePlaceholder}
                     />
                   </div>
 
@@ -268,11 +251,11 @@ export function Contact() {
                     className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#00BCD4] text-white rounded-lg font-medium hover:bg-[#00ACC1] transition-colors shadow-lg"
                   >
                     <Send className="w-5 h-5" />
-                    Send Message
+                    {contactContent.form.submitLabel}
                   </button>
 
                   <p className="text-sm text-[#1A237E]/60 text-center">
-                    * Required fields
+                    {contactContent.form.requiredNote}
                   </p>
                 </form>
               </div>
@@ -287,46 +270,16 @@ export function Contact() {
       {/* Frequently asked questions - add or edit questions below */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-[#1A237E] text-center mb-12">Frequently Asked Questions</h2>
+          <h2 className="text-[#1A237E] text-center mb-12">{contactContent.faq.title}</h2>
           
           {/* Each FAQ is in its own box - copy/paste to add more */}
           <div className="space-y-6">
-            {/* FAQ 1 - Edit question and answer */}
-            <div className="bg-[#F5F3EE] rounded-lg p-6">
-              <h3 className="text-[#1A237E] mb-3">How much do camps cost?</h3>
-              <p className="text-[#1A237E]/70">
-                Most camps range from $50-$150 per week. We offer scholarships and sliding-scale 
-                pricing to ensure all students can participate. Contact us to learn more about 
-                financial assistance.
-              </p>
-            </div>
-
-            {/* FAQ 2 */}
-            <div className="bg-[#F5F3EE] rounded-lg p-6">
-              <h3 className="text-[#1A237E] mb-3">Do students need prior coding experience?</h3>
-              <p className="text-[#1A237E]/70">
-                Not at all! We offer programs for complete beginners as well as more advanced students. 
-                Each camp listing indicates the recommended skill level and age range.
-              </p>
-            </div>
-
-            {/* FAQ 3 */}
-            <div className="bg-[#F5F3EE] rounded-lg p-6">
-              <h3 className="text-[#1A237E] mb-3">Can educators use your resources for free?</h3>
-              <p className="text-[#1A237E]/70">
-                Yes! All curriculum modules, lesson plans, and glossary resources are completely 
-                free for educators. We're here to support quality CS education across Southwest Virginia.
-              </p>
-            </div>
-
-            {/* FAQ 4 */}
-            <div className="bg-[#F5F3EE] rounded-lg p-6">
-              <h3 className="text-[#1A237E] mb-3">How can I volunteer or teach?</h3>
-              <p className="text-[#1A237E]/70">
-                We're always looking for volunteers! Select "Volunteer / Teaching Opportunity" 
-                in the contact form above, and tell us about your background and availability.
-              </p>
-            </div>
+            {contactContent.faq.items.map((item, index) => (
+              <div key={`${item.question}-${index}`} className="bg-[#F5F3EE] rounded-lg p-6">
+                <h3 className="text-[#1A237E] mb-3">{item.question}</h3>
+                <p className="text-[#1A237E]/70">{item.answer}</p>
+              </div>
+            ))}
             
             {/* TO ADD MORE FAQs: Copy the section above from <div className="bg-[#F5F3EE]...
                  to the closing </div>, paste it here, and edit the question and answer */}

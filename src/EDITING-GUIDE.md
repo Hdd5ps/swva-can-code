@@ -12,6 +12,21 @@ When you see these color codes in the files, here's what they mean:
 
 ## 📁 Where to Find Things
 
+### Page Content (Most Text and Lists)
+**Folder:** `/src/data/`
+
+Most page copy, lists, and cards are now stored in data files so you can edit content without touching React code.
+
+**Common files:**
+- Home page: `/src/data/homeContent.ts`
+- About page: `/src/data/aboutContent.ts`
+- Contact page: `/src/data/contactContent.ts`
+- Curriculum page: `/src/data/curriculumContent.ts`
+- Find a Camp page: `/src/data/findCampContent.ts`
+- Showcase page: `/src/data/showcaseContent.ts`
+- Sponsor page: `/src/data/sponsorContent.ts`
+- SWVA Can Create page: `/src/data/swvaCanCreateContent.ts`
+
 ### Navigation Menu (Top of Every Page)
 **File:** `/components/Navbar.tsx`
 
@@ -30,7 +45,7 @@ When you see these color codes in the files, here's what they mean:
 - Copyright text
 
 ### Home Page
-**File:** `/pages/Home.tsx`
+**File:** `/src/data/homeContent.ts`
 
 **What you can edit:**
 - Main headline and subheadline
@@ -40,14 +55,13 @@ When you see these color codes in the files, here's what they mean:
 - Call-to-action buttons
 
 **To add a new upcoming camp:**
-1. Find the `Upcoming Camps Preview` section
-2. Look for the array starting with `[{`
-3. Copy one camp object (the part between `{` and `}`)
-4. Paste it after the last camp, adding a comma
-5. Edit the title, date, location, ages, and color
+1. Find the `upcomingCamps` list in `/src/data/homeContent.ts`
+2. Copy one camp object (the part between `{` and `}`)
+3. Paste it after the last camp, adding a comma
+4. Edit the title, date, location, ages, and color
 
 ### Contact Page
-**File:** `/pages/Contact.tsx`
+**File:** `/src/data/contactContent.ts`
 
 **What you can edit:**
 - Contact information (email, phone, location, hours)
@@ -55,22 +69,15 @@ When you see these color codes in the files, here's what they mean:
 - FAQ questions and answers
 
 **To add a new FAQ:**
-1. Find the `FAQ SECTION`
-2. Copy one entire FAQ block (from `<div className="bg-[#F5F3EE]...` to its closing `</div>`)
-3. Paste it at the bottom
-4. Edit the question (in `<h3>`) and answer (in `<p>`)
+1. Find the `faq.items` list in `/src/data/contactContent.ts`
+2. Copy one FAQ object (the part between `{` and `}`)
+3. Paste it after the last FAQ, adding a comma
+4. Edit the question and answer text
 
 ## 🔧 Common Editing Tasks
 
 ### Changing Text
-Simply find the text between `>` and `<` tags and replace it. For example:
-```
-<h1>Old Title</h1>
-```
-Change to:
-```
-<h1>New Title</h1>
-```
+Most text now lives in `/src/data/*.ts` files. Find the text in the data file and replace it.
 
 ### Changing Links
 Find the `to="/page-name"` or `href="/page-name"` and change the page name. For example:

@@ -1,88 +1,22 @@
 import { useState } from 'react';
 import { Calendar, MapPin, Users, Clock, ArrowRight, Search } from 'lucide-react';
+import { findCampContent } from '../data/findCampContent';
 
 export function FindCamp() {
   const [searchTerm, setSearchTerm] = useState('');
   const [ageFilter, setAgeFilter] = useState('all');
   const [locationFilter, setLocationFilter] = useState('all');
 
-  const camps = [
-    {
-      id: 1,
-      title: 'Summer Code Camp - Beginners',
-      date: 'June 12-16, 2026',
-      location: 'Abingdon, VA',
-      ageRange: '8-12',
-      duration: '5 days',
-      description: 'Perfect introduction to coding! Learn Scratch, create games, and make animations.',
-      spots: 'Limited spots available',
-      color: '#00BCD4'
-    },
-    {
-      id: 2,
-      title: 'Game Design Workshop',
-      date: 'June 19-23, 2026',
-      location: 'Bristol, VA',
-      ageRange: '10-14',
-      duration: '5 days',
-      description: 'Design and build your own video games using Unity and learn game development principles.',
-      spots: 'Open enrollment',
-      color: '#E53935'
-    },
-    {
-      id: 3,
-      title: 'Web Development Basics',
-      date: 'July 10-14, 2026',
-      location: 'Blacksburg, VA',
-      ageRange: '12-16',
-      duration: '5 days',
-      description: 'Build real websites with HTML, CSS, and JavaScript. Create your own portfolio!',
-      spots: 'Open enrollment',
-      color: '#00BCD4'
-    },
-    {
-      id: 4,
-      title: 'Python Programming for Beginners',
-      date: 'July 17-21, 2026',
-      location: 'Abingdon, VA',
-      ageRange: '10-14',
-      duration: '5 days',
-      description: 'Learn Python basics through fun projects including data visualization and simple games.',
-      spots: 'Open enrollment',
-      color: '#E53935'
-    },
-    {
-      id: 5,
-      title: 'Mobile App Development',
-      date: 'July 24-28, 2026',
-      location: 'Bristol, VA',
-      ageRange: '13-17',
-      duration: '5 days',
-      description: 'Create your own mobile apps and learn the fundamentals of app design and development.',
-      spots: 'Limited spots available',
-      color: '#00BCD4'
-    },
-    {
-      id: 6,
-      title: 'Robotics & Arduino Camp',
-      date: 'August 7-11, 2026',
-      location: 'Blacksburg, VA',
-      ageRange: '11-15',
-      duration: '5 days',
-      description: 'Build and program robots using Arduino! Hands-on experience with sensors and motors.',
-      spots: 'Open enrollment',
-      color: '#E53935'
-    }
-  ];
+  const camps = findCampContent.camps;
 
   return (
     <div>
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#1A237E] to-[#00BCD4] text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-white mb-6">Find a Camp</h1>
+          <h1 className="text-white mb-6">{findCampContent.hero.title}</h1>
           <p className="text-xl text-white/90">
-            Discover the perfect coding camp for your child. Filter by age, location, and interests.
+            {findCampContent.hero.subtitle}
           </p>
         </div>
       </section>
@@ -146,11 +80,8 @@ export function FindCamp() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
-            <h2 className="text-[#1A237E] mb-2">Summer 2026 Camps</h2>
-            <p className="text-[#1A237E]/70">
-              All camps include materials, snacks, and a certificate of completion. 
-              Need-based scholarships available.
-            </p>
+            <h2 className="text-[#1A237E] mb-2">{findCampContent.sectionHeader.title}</h2>
+            <p className="text-[#1A237E]/70">{findCampContent.sectionHeader.description}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -220,53 +151,32 @@ export function FindCamp() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-[#1A237E] mb-4">What to Expect</h2>
+              <h2 className="text-[#1A237E] mb-4">{findCampContent.expectations.title}</h2>
               <ul className="space-y-3 text-[#1A237E]/80">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#00BCD4] font-bold">•</span>
-                  <span>Small class sizes (max 15 students per instructor)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#00BCD4] font-bold">•</span>
-                  <span>All materials and computers provided</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#00BCD4] font-bold">•</span>
-                  <span>Experienced instructors passionate about teaching</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#00BCD4] font-bold">•</span>
-                  <span>Hands-on projects students take home</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#00BCD4] font-bold">•</span>
-                  <span>Certificate of completion for all participants</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#00BCD4] font-bold">•</span>
-                  <span>Scholarships available based on need</span>
-                </li>
+                {findCampContent.expectations.items.map((item, index) => (
+                  <li key={`${item}-${index}`} className="flex items-start gap-2">
+                    <span className="text-[#00BCD4] font-bold">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
-              <h2 className="text-[#1A237E] mb-4">Have Questions?</h2>
-              <p className="text-[#1A237E]/80 mb-6">
-                We're here to help! Contact us if you have questions about registration, 
-                scholarships, accommodations, or anything else.
-              </p>
+              <h2 className="text-[#1A237E] mb-4">{findCampContent.questions.title}</h2>
+              <p className="text-[#1A237E]/80 mb-6">{findCampContent.questions.description}</p>
               <div className="space-y-4">
                 <a
-                  href="mailto:camps@swvacancode.org"
+                  href={findCampContent.questions.emailHref}
                   className="block px-6 py-3 bg-[#00BCD4] text-white rounded-lg font-medium hover:bg-[#00ACC1] transition-colors text-center"
                 >
-                  Email Us
+                  {findCampContent.questions.emailLabel}
                 </a>
                 <a
-                  href="tel:+15551234567"
+                  href={findCampContent.questions.phoneHref}
                   className="block px-6 py-3 bg-[#1A237E] text-white rounded-lg font-medium hover:bg-[#283593] transition-colors text-center"
                 >
-                  Call (555) 123-4567
+                  {findCampContent.questions.phoneLabel}
                 </a>
               </div>
             </div>

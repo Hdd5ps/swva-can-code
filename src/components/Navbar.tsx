@@ -19,7 +19,7 @@ export function Navbar() {
     { path: '/find-camp', label: 'Find a Camp' },
     { path: '/showcase', label: 'Showcase' },
     { path: '/swva-can-create', label: 'SWVA Can Create' },
-    { path: '/curriculum', label: 'Curriculum & Resources' },
+    { path: '/curriculum', label: 'Curriculum' },
     { path: '/contact', label: 'Contact' },
     { path: '/sponsor', label: 'Sponsor' },
   ];
