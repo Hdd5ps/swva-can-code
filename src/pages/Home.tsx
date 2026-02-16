@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { Code, Users, Lightbulb, Award, ArrowRight, Calendar, MapPin } from 'lucide-react';
 import bannerImage from '../assets/logo1.png';
+import swiftLogo from '../assets/swift.svg';
 import { homeContent } from '../data/homeContent';
 
 export function Home() {
@@ -163,36 +164,39 @@ export function Home() {
           ============================================ */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[auto,1fr] gap-10 items-start">
-            <div className="bg-[#F5F3EE] rounded-2xl p-8 text-center">
-              <div className="text-xs tracking-[0.4em] text-[#1A237E]/60">{homeContent.appleCurriculum.logoLabel}</div>
-            </div>
-            <div>
-              <h2 className="text-[#1A237E] mb-4">{homeContent.appleCurriculum.title}</h2>
-              <p className="text-[#1A237E]/80 text-lg mb-6">{homeContent.appleCurriculum.intro}</p>
-              <p className="text-[#1A237E]/70 mb-6">{homeContent.appleCurriculum.details}</p>
-              <ul className="space-y-3 text-[#1A237E]/80 mb-6">
-                {homeContent.appleCurriculum.bullets.map((item, index) => (
-                  <li key={`${item}-${index}`} className="flex items-start gap-2">
-                    <span className="text-[#00BCD4] font-bold">•</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-col sm:flex-row gap-4">
-                {homeContent.appleCurriculum.links.map((link, index) => (
-                  <a
-                    key={`${link.label}-${index}`}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-[#1A237E] text-[#1A237E] font-medium hover:bg-[#1A237E]/10 transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
+          <div className="text-xs tracking-[0.4em] text-[#1A237E]/60 mb-3">
+            {homeContent.appleCurriculum.logoLabel}
+          </div>
+          <h2 className="text-[#1A237E] mb-6">{homeContent.appleCurriculum.title}</h2>
+          <div className="flex items-start gap-6 mb-4">
+            <img
+              src={swiftLogo}
+              alt="Swift logo"
+              className="h-20 w-20 shrink-0"
+            />
+            <p className="text-[#1A237E]/80 text-lg">{homeContent.appleCurriculum.intro}</p>
+          </div>
+          <p className="text-[#1A237E]/70 mb-6">{homeContent.appleCurriculum.details}</p>
+          <ul className="space-y-3 text-[#1A237E]/80 mb-6">
+            {homeContent.appleCurriculum.bullets.map((item, index) => (
+              <li key={`${item}-${index}`} className="flex items-start gap-2">
+                <span className="text-[#00BCD4] font-bold">•</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="flex flex-col sm:flex-row gap-4">
+            {homeContent.appleCurriculum.links.map((link, index) => (
+              <a
+                key={`${link.label}-${index}`}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-[#1A237E] text-[#1A237E] font-medium hover:bg-[#1A237E]/10 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       </section>

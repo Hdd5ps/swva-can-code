@@ -131,14 +131,27 @@ export function FindCamp() {
                     </div>
                   </div>
 
-                  {/* CTA Button */}
-                  <button
-                    className="w-full py-3 rounded-lg font-medium text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-                    style={{ backgroundColor: camp.color }}
-                  >
-                    Register Now
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+                  {/* Camp Contacts */}
+                  {camp.contacts && camp.contacts.length > 0 && (
+                    <div className="border-t border-[#1A237E]/10 pt-4 space-y-2">
+                      <div className="text-xs uppercase tracking-[0.2em] text-[#1A237E]/60">
+                        Camp Contacts
+                      </div>
+                      <div className="space-y-1 text-sm text-[#1A237E]/70">
+                        {camp.contacts.map((contact) => (
+                          <div key={`${camp.id}-${contact.label}`}> 
+                            <span className="text-[#1A237E] font-medium">{contact.label}:</span>{' '}
+                            <a
+                              href={`mailto:${contact.value}`}
+                              className="text-[#1A237E]/70 hover:text-[#1A237E]"
+                            >
+                              {contact.value}
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

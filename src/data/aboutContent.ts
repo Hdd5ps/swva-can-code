@@ -1,38 +1,38 @@
 // Editable content for the About page.
 export const aboutContent = {
   hero: {
-    title: 'About SWVA Can Code',
-    subtitle: 'Are you up to the challenge?'
+    title: 'Learn About Our Program!',
+    subtitle: 'Innovative Curriculum + Amazing Collaborations = AWESOME Experiences!'
   },
   mission: {
-    title: 'Our Mission',
+    title: 'SWVA Can Code',
     text:
-      'To provide accessible, high-quality coding education and creative technology experiences to K-12 students across Southwest Virginia, fostering critical thinking, creativity, and digital literacy skills that prepare them for future success.'
+      'SWVA Can Code is a program that encourages 5th to 12th graders to create and develop web applications that aim to solve important problems or take advantage of opportunities within their communities. This regional initiative provides an opportunity for young students to engage in the process of designing and prototyping these apps. By participating in this program, students are able to contribute to their communities and make a positive impact through technology. The program focuses on empowering students to identify challenges or opportunities in their communities and finding innovative solutions through coding. SWVA Can Code not only provides valuable skills in web development but also fosters creativity, problem-solving, and collaboration among young minds.'
   },
   vision: {
-    title: 'Our Vision',
+    title: 'Equity Matters',
     text:
-      'A Southwest Virginia where every student has the opportunity to explore technology, express their creativity through code, and build the skills needed to thrive in an increasingly digital world, regardless of their background or zip code.'
+      'Equity is a key element of this initiative. To ensure all students have access, all SWVA Can Code camps are FREE for all students, and some division partners also assist with transportation and meals for campers.'
   },
   whatWeDo: {
-    title: 'What We Do',
+    title: 'The SWVA Can Code Experience',
     description:
-      'We offer a range of programs designed to make technology education fun, accessible, and relevant to students\' lives.',
+      'Camps are divided into two divisions, one for rising 5-8th graders and one for rising 9-12th graders.',
     items: [
       {
-        title: 'Summer & Break Camps',
+        title: 'The Camp Experience',
         text:
-          'Week-long immersive camps where students learn coding fundamentals, build projects, and make lasting friendships.'
+          'Camps utilize Apple\'s SWIFT Program and Everyone Can Code curriculum. Camps are very hands-on and collaboration is encouraged. Campers learn to code, problem-solve, collaborate, and communicate their ideas. Camps are hosted at local schools or through one of the Higher Education or Community partner institutions. Camps range from 1-4 weeks in length with 24-36 hours of total instruction. Camps are FREE for all students. Each camp has a showcase as the culminating event where community members will provide feedback on app designs.'
       },
       {
-        title: 'Creative Tech Programs',
+        title: 'Educator Support & Training',
         text:
-          'Year-round opportunities including game jams, hackathons, art+tech workshops, and special interest clubs.'
+          'Training and support for camp instructional staff is provided for free to any participating school or organization. Each participating camp location has trained camp leaders and instructional staff. Camp staff train both virtually and on site for a minimum of 10 hours but many have invested much more time developing their knowledge of SWIFT Playgrounds and other needed applications. Camp staffing ratios are lower than traditional classrooms with a 1:15 max ratio. This helps to ensure that camp instructors can guide students through the camp experience properly. Camp leaders work with seasoned Apple Professional Learning specialists to build a customized camp experience that supports the needs of their students.'
       },
       {
-        title: 'Educator Resources',
+        title: 'Planning & Tech Support',
         text:
-          'Free curriculum, lesson plans, and teaching resources for educators bringing coding into their classrooms.'
+          'Participating schools and organizations have access to ongoing planning and technical support. Camp leaders may attend monthly meetings to share ideas and gain insights on ensuring they have the best plan possible. Tech departments may attend the Technical Prep meeting hosted by Apple Education engineers and the project leader. In some cases, UVAWISE\'s STREAMWISE program may be able to provide additional student devices as available.'
       }
     ]
   },
@@ -40,19 +40,19 @@ export const aboutContent = {
     title: 'Why It Matters',
     paragraphs: [
       {
-        lead: 'Technology is everywhere.',
+        lead: 'Built on collaboration.',
         text:
-          'From the apps we use to the systems that power our communities, coding and digital literacy are essential skills for the 21st century. Yet many students, especially in rural areas like Southwest Virginia, lack access to quality computer science education.'
+          'SWVA Can Code is the result of an amazing collaboration between regional school divisions, Apple Education, local business and industry partners, and The University of Virginia\'s College at Wise. The idea was simple: give all students access to a fun, engaging camp experience where they learn to code, problem solve, identify challenges or opportunities within their local area, brainstorm, and dream up ways to help them create a web app design that supports their ideas.'
       },
       {
-        lead: 'We are changing that.',
+        lead: 'The results speak loudly.',
         text:
-          'SWVA Can Code brings engaging, hands-on tech education directly to students across the region. We believe that every child deserves the chance to learn to code, create with technology, and develop the problem-solving skills that will serve them throughout their lives.'
+          'The results yielded more than an impressive list of web app prototypes. We saw students work together, collaborating and communicating in ways that amazed their camp leaders, school administrators, and even their parents. We found out about things they were passionate about. We saw their confidence build as they braved audiences both big and small and proudly discussed their apps. We saw proud smiles because together we had done something hard.'
       },
       {
-        lead: 'Beyond technical skills,',
+        lead: 'A guiding philosophy.',
         text:
-          'our programs foster creativity, critical thinking, collaboration, and confidence. Students do not just learn syntax. They learn to see themselves as creators and innovators who can use technology to solve real problems and bring their ideas to life.'
+          '"We can do hard things, then we can do other hard things until the hard things are not so hard anymore and then we can do anything!" - Heather B. Askea, Project Lead'
       }
     ]
   },

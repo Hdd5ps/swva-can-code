@@ -87,6 +87,18 @@ export const curriculumContent = {
         description: 'Computer programming courses from intro to advanced',
         link: 'https://khanacademy.org',
         icon: '📚'
+      },
+      {
+        name: 'GitHub Education',
+        description: 'Free developer tools and resources for students and educators',
+        link: 'https://education.github.com',
+        icon: '🐙'
+      },
+      {
+        name: 'Apple Education',
+        description: 'Coding resources and curriculum for educators',
+        link: 'https://education.apple.com',
+        icon: '🍎'
       }
     ]
   },
@@ -145,6 +157,38 @@ export const curriculumContent = {
         'An algorithm is a step-by-step set of instructions for solving a problem or completing a task. It is like a recipe for your code!',
       videoId: 'dQw4w9WgXcQ',
       color: '#E53935'
+    },
+    {
+      term: 'Object-Oriented Programming',
+      difficulty: 'Advanced',
+      definition:
+        'Object-oriented programming is a way of organizing code using "objects" that represent real-world things. Each object can have its own properties and actions, making it easier to manage complex programs.',
+      videoId: 'dQw4w9WgXcQ',
+      color: '#00BCD4'
+    },
+    {
+      term: 'Recursion',
+      difficulty: 'Advanced',
+      definition:
+        'Recursion is when a function calls itself in order to solve a problem. It can be a powerful way to write code, but it can also be tricky to understand at first!',
+      videoId: 'dQw4w9WgXcQ',
+      color: '#E53935'
+    },
+    {
+      term: 'API',
+      difficulty: 'Advanced',
+      definition:
+        'An API (Application Programming Interface) is a way for different software programs to talk to each other. It allows you to use features or data from another service in your own code.',
+      videoId: 'dQw4w9WgXcQ',
+      color: '#00BCD4'
+    },
+    {
+      term: 'Debugging',
+      difficulty: 'Beginner',
+      definition:
+        'Debugging is the process of finding and fixing errors in your code. It is like being a detective, looking for clues to figure out why your program isn\'t working the way you want it to.',
+      videoId: 'dQw4w9WgXcQ',
+      color: '#E53935' 
     }
   ],
   cta: {
